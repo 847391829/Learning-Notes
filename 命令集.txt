@@ -1,0 +1,105 @@
+mkdir XX 在当前目录下创建目录
+mkdir -p XX 创建多级目录
+touch XX 创建空文件（可同时创建多个，空格隔开）
+
+cp a.txt test/ 复制a.txt文件到test文件夹中
+cp -r test1/ test2/ 复制整个test1目录到test2中
+/cp -r test1/ test2/ 复制整个test1目录到test2中，强制覆盖不提示
+rm XX 删除文件或目录
+rm -r XX 递归删除整个文件夹
+rm -f XX 强制删除不提示
+mv XX GG 重命名
+mv XX /xx/ 移动文件（剪切）
+
+cat XX 只读方式打开文件
+cat -n XX 打开文件并显示行号
+cat -n XX | more 打开文件并显示行号（分页显示）
+
+more XX 查看文件（
+ 空格：向下翻一页
+ enter：向下一行
+ q：立刻离开，不再显示文件内容
+ Ctrl+f：向下滚动一屏
+ Ctrl+b：返回上一屏
+ =：输出当前行号
+ :f:输出文件名和当前行的行号
+）
+
+less XX：查看文件，比more更强大，适合查阅大文本文件（
+ 空格：向下翻动一页
+ pagedown：向下翻动一页
+ pageup：向上翻动一页
+ /字符：向下搜索指定字符n：向下查找 N：向上查找
+ ?字符：向上搜索指定字符n：向下查找 N：向上查找
+ q：离开less程序
+）
+
+>输出重定向覆盖原来内容 例：ls -l > a.txt
+>>输出重定向追加
+>和>>可用于复制文件内容，如cat /home/aa.txt > a.txt
+cal:显示日历
+
+echo:输出内容到控制台 如：echo $PATH 输出环境变量
+head xx：查看xx文件的前10行内容
+head -n 5 xx:查看xx文件的前5行内容
+tail xx:查看文件后10行内容
+tail -n 5 xx:查看文件后5行内容
+tail -f xx:实时追踪文件的更新（常用）
+
+ln -s xx/xx linkname 创建名为linkname的软链接
+rm -rf xxlink 删除名为xxlink的软链接
+
+history 查看已执行过的历史命令
+history 10 查看最近执行的10条命令
+!125 执行编号为125的命令
+
+date "+%Y-%m-%d %H:%M:%S" 日期命令，可用单独字符分别显示
+
+find testdir/ -name bb.txt 在testdir目录下按名称查询bb.txt
+find testdir/ -user jhon 在testdir目录下寻找属于用户jhon的所有文件
+find testdir/ -size +10M 在testdir目录下寻找大于10M的文件
+find testdir/ -size -10K 在testdir目录下寻找小于10K的文件
+find testdir/ -name *.txt 在testdir目录下寻找后缀为txt的文件
+
+locate 快速定位文件位置 第一次使用前先执行updatedb，以创建locate库
+
+grep 过滤查找
+| 管道符，表示将前一个命令处理结果传递给后面的命令
+cat aa.txt | grep -n ok 在aa.txt文件中查找ok所在的行，并显示行号（区分大小写）
+cat aa.txt | grep -ni ok 在aa.txt文件中查找ok所在的行，并显示行号（不区分大小写）
+
+gzip xx.txt 将xx.txt压缩成后缀为.gz的压缩文件（不保留源文件）
+gunzip xx.txt.gz 将xx.txt.gz解压缩
+
+zip my.zip /home/xx.txt 将home下的xx.txt文件压缩成my.zip
+zip -r my.zip /home/ 递归将home下的所有文件压缩成my.zip
+unzip -d /home/myfile/ xx.zip 将xx.zip解压到/nome/myfile目录下
+
+tar -zcvf ab.tar.gz a.txt b.txt将a.txt和b.txt打包压缩成ab.tar.gz
+tar -zcvf test.tar.gz /home/ 将home的文件夹打包压缩成test.tar.gz
+tar -zxvf ab.tar.gz 将ab.tar.gz解压到当前目录
+tar -zxvf test.tar.gz -C /home/ 将test.tar.gz解压缩到home目录下
+ 
+组概念
+ls -ahl 查看文件所有者和所在组
+groupadd xx 创建组
+chown tom xx.txt 修改文件的所有者
+chgrp xx xx.txt 修改文件所在组
+usermod -g xx user 修改用户所在组（需具备root权限）
+usermod -d 目录名 用户名 修改用户登录的初始目录
+chown Jhon:G2 xx.txt 修改文件所有者和所在组
+
+rpm -qa firefox  是否安装了火狐
+rpm -qi firefox  火狐的安装信息
+rpm -ql firefox  火狐的安装路径信息
+rpm -ivh firefox-45.1 安装火狐（先挂载centos的iso文件，然后在/media/下找到对应rpm包）
+rpm -e firefox  卸载火狐
+rpm -e --nodeps firefox 卸载火狐并强制删除依赖
+
+yum list | grep firefox 查询服务器上的火狐版本
+yum install huohu 安装火狐
+
+
+
+
+
